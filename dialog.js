@@ -17,20 +17,21 @@ CKEDITOR.dialog.add('youtube',function(editor){
             validate:function(){
                 var url = this.getValue();
                 var matches1 = url.match(/^http:\/\/www\.youtube\.com\/watch\?v=([a-z|0-9|_|-]+)/i);
-                var matches2 = url.match(/^http:\/\/youtu.\.be\/([a-z|0-9|_|-]+)/i);
+                var matches2 = url.match(/^http:\/\/youtu\.be\/([a-z|0-9|_|-]+)/i);
                 if (url == null || url == '') {
                     alert('Please enter a vaild URL.');
                     return false;
-                } else if (!(matches1 && matches1[1]) || !(matches2 && matches2[1])) {
+                } else if ((matches1 && matches1[1]) || (matches2 && matches2[1])) {
+                    return true;
+                } else {
+                    console.log("dame!!");
                     alert('The format of the URL is incorrect.');
                     return false;
-                } else {
-                    return true;
                 }
             },
             required:true,
             commit:function(data){
-                data.url = this.getValue();
+                var url = this.getValue();
                 var matches1 = url.match(/^http:\/\/www\.youtube\.com\/watch\?v=([a-z|0-9|_|-]+)/i);
                 var matches2 = url.match(/^http:\/\/youtu.\.be\/([a-z|0-9|_|-]+)/i);
                 if ((matches1 && matches1[1])) {
@@ -74,6 +75,5 @@ CKEDITOR.dialog.add('youtube',function(editor){
                 + 'width="'+vSize.width+'" height="'+vSize.height+'" allowfullscreen></iframe>';
             editor.insertHtml(scriptTag);
         }
-        <iframe width="560" height="315" src="http://www.youtube.com/embed/MVQ13Koi-Nc" frameborder="0" allowfullscreen></iframe>
     };
 });
