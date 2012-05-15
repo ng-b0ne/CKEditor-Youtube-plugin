@@ -70,7 +70,7 @@ CKEDITOR.dialog.add('youtube',function(editor){
             var dialog = this,data={};
             this.commitContent(data);
             var vSize = videoSize[data.videoSize];
-            var scriptTag = '<iframe src="http://www.youtube.com/embed/' + data.videoId
+            var scriptTag = '<iframe src="http://www.youtube.com/embed/' + data.videoId + '"'
                 + ' frameborder="0" '
                 + 'width="'+vSize.width+'" height="'+vSize.height+'" allowfullscreen></iframe>';
             editor.insertHtml(scriptTag);
